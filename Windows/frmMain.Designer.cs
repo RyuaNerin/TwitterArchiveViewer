@@ -63,7 +63,6 @@
 			this.bgwRefresh = new System.ComponentModel.BackgroundWorker();
 			this.btnAnalytics = new System.Windows.Forms.Button();
 			this.bgwAnalytics = new System.ComponentModel.BackgroundWorker();
-			this.btnScript = new System.Windows.Forms.Button();
 			this.cmsUrls.SuspendLayout();
 			this.grbSearch.SuspendLayout();
 			this.sts.SuspendLayout();
@@ -337,7 +336,7 @@
 			// 
 			this.btnAnalytics.Location = new System.Drawing.Point(12, 69);
 			this.btnAnalytics.Name = "btnAnalytics";
-			this.btnAnalytics.Size = new System.Drawing.Size(81, 30);
+			this.btnAnalytics.Size = new System.Drawing.Size(168, 30);
 			this.btnAnalytics.TabIndex = 6;
 			this.btnAnalytics.Text = "트윗 분석";
 			this.btnAnalytics.UseVisualStyleBackColor = true;
@@ -348,20 +347,10 @@
 			this.bgwAnalytics.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwAnalytics_DoWork);
 			this.bgwAnalytics.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwAnalytics_RunWorkerCompleted);
 			// 
-			// btnScript
-			// 
-			this.btnScript.Location = new System.Drawing.Point(99, 69);
-			this.btnScript.Name = "btnScript";
-			this.btnScript.Size = new System.Drawing.Size(81, 30);
-			this.btnScript.TabIndex = 7;
-			this.btnScript.Text = "스크립트";
-			this.btnScript.UseVisualStyleBackColor = true;
-			// 
 			// frmMain
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(634, 407);
-			this.Controls.Add(this.btnScript);
 			this.Controls.Add(this.btnAnalytics);
 			this.Controls.Add(this.sts);
 			this.Controls.Add(this.lblPayload);
@@ -421,7 +410,6 @@
 		private System.Windows.Forms.ToolStripMenuItem chkFilterImage;
 		private System.Windows.Forms.ToolStripMenuItem chkFilterMention;
 		private System.Windows.Forms.ToolStripMenuItem chkFilterLink;
-		private System.Windows.Forms.Button btnScript;
 	}
 }
 
