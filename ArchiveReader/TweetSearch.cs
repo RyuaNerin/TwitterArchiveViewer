@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace TwitterArchiveViewer
 {
-	public class TweetSearch
+	internal class TweetSearch
 	{
 		/*
 			A B C

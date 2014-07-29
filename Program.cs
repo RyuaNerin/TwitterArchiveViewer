@@ -3,8 +3,11 @@ using System.Windows.Forms;
 
 namespace TwitterArchiveViewer
 {
-	static class Program
+	internal static class Program
 	{
+		public const string ConsumerKey = "";
+		public const string ConsumerSec = "";
+
 		[STAThread]
 		static void Main()
 		{

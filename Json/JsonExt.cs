@@ -7,7 +7,7 @@ namespace TwitterArchiveViewer
 	{
 		public static DateTime ToDateTime(string dateTimeString)
 		{
-			return DateTime.Parse(dateTimeString).ToLocalTime();
+			return DateTime.Parse(dateTimeString);
 		}
 		public static JsonObject GetJson(this JsonObject jsonObject, string key)
 		{

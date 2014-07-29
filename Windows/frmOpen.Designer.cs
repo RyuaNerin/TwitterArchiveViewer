@@ -28,12 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.txtPath = new System.Windows.Forms.TextBox();
 			this.txtOpen = new System.Windows.Forms.Button();
 			this.chkLoadAll = new System.Windows.Forms.CheckBox();
 			this.btnOpen = new System.Windows.Forms.Button();
 			this.fbd = new System.Windows.Forms.FolderBrowserDialog();
+			this.chkUseCache = new System.Windows.Forms.CheckBox();
+			this.ttp = new System.Windows.Forms.ToolTip(this.components);
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -71,11 +74,14 @@
 			// chkLoadAll
 			// 
 			this.chkLoadAll.AutoSize = true;
+			this.chkLoadAll.Checked = true;
+			this.chkLoadAll.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chkLoadAll.Location = new System.Drawing.Point(12, 69);
 			this.chkLoadAll.Name = "chkLoadAll";
-			this.chkLoadAll.Size = new System.Drawing.Size(340, 19);
+			this.chkLoadAll.Size = new System.Drawing.Size(134, 19);
 			this.chkLoadAll.TabIndex = 0;
-			this.chkLoadAll.Text = "모든 트윗 미리 읽기 (많은 메모리, 여는시간 김, 빠른 검색)";
+			this.chkLoadAll.Text = "모든 트윗 미리 읽기";
+			this.ttp.SetToolTip(this.chkLoadAll, "처음 아카이브를 읽어들일때, 모든 트윗을 읽습니다.\r\n실행 속도는 느려지지만, 빠른 검색이 가능합니다");
 			this.chkLoadAll.UseVisualStyleBackColor = true;
 			// 
 			// btnOpen
@@ -93,11 +99,25 @@
 			// 
 			this.fbd.Description = "트위터 아카이브 폴더 위치를 선택해주세요";
 			// 
+			// chkUseCache
+			// 
+			this.chkUseCache.AutoSize = true;
+			this.chkUseCache.Checked = true;
+			this.chkUseCache.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkUseCache.Location = new System.Drawing.Point(182, 69);
+			this.chkUseCache.Name = "chkUseCache";
+			this.chkUseCache.Size = new System.Drawing.Size(106, 19);
+			this.chkUseCache.TabIndex = 2;
+			this.chkUseCache.Text = "캐시 기능 사용";
+			this.ttp.SetToolTip(this.chkUseCache, "빠르게 불러오기 위해서 캐시 파일을 남겨둡니다.");
+			this.chkUseCache.UseVisualStyleBackColor = true;
+			// 
 			// frmOpen
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(364, 142);
+			this.Controls.Add(this.chkUseCache);
 			this.Controls.Add(this.chkLoadAll);
 			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.btnOpen);
@@ -126,5 +146,7 @@
 		internal System.Windows.Forms.CheckBox chkLoadAll;
 		private System.Windows.Forms.Button btnOpen;
 		private System.Windows.Forms.FolderBrowserDialog fbd;
+		internal System.Windows.Forms.CheckBox chkUseCache;
+		private System.Windows.Forms.ToolTip ttp;
 	}
 }

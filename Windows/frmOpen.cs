@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace TwitterArchiveViewer
 {
-	public partial class frmOpen : Form
+	internal partial class frmOpen : Form
 	{
 		public frmOpen()
 		{
@@ -32,6 +32,8 @@ namespace TwitterArchiveViewer
 				this.txtPath.Focus();
 				return;
 			}
+			
+			ArchiveReader.SetArchive(this.txtPath.Text.Trim(), this.chkLoadAll.Checked, this.chkUseCache.Checked);
 
 			this.DialogResult = DialogResult.OK;
 			this.Close();

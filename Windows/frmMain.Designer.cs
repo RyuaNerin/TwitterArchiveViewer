@@ -37,6 +37,7 @@
 			this.lsvTweet_Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.lsvTweet_user = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.lsvTweet_Text = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.lsvTweet_source = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.cmsUrls = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.tsmWeb = new System.Windows.Forms.ToolStripMenuItem();
 			this.tssUrls = new System.Windows.Forms.ToolStripSeparator();
@@ -49,13 +50,20 @@
 			this.bgwOpen = new System.ComponentModel.BackgroundWorker();
 			this.lblPayload = new System.Windows.Forms.Label();
 			this.bgwLoad = new System.ComponentModel.BackgroundWorker();
-			this.bgwLoadAll = new System.ComponentModel.BackgroundWorker();
 			this.bgwSearch = new System.ComponentModel.BackgroundWorker();
 			this.sts = new System.Windows.Forms.StatusStrip();
+			this.tsdFilter = new System.Windows.Forms.ToolStripDropDownButton();
+			this.chkFilterMy = new System.Windows.Forms.ToolStripMenuItem();
+			this.chkFilterMention = new System.Windows.Forms.ToolStripMenuItem();
+			this.chkFilterRetweet = new System.Windows.Forms.ToolStripMenuItem();
+			this.chkFilterLink = new System.Windows.Forms.ToolStripMenuItem();
+			this.chkFilterImage = new System.Windows.Forms.ToolStripMenuItem();
 			this.prg = new System.Windows.Forms.ToolStripProgressBar();
 			this.lbl = new System.Windows.Forms.ToolStripStatusLabel();
 			this.bgwRefresh = new System.ComponentModel.BackgroundWorker();
-			this.bgwMemory = new System.ComponentModel.BackgroundWorker();
+			this.btnAnalytics = new System.Windows.Forms.Button();
+			this.bgwAnalytics = new System.ComponentModel.BackgroundWorker();
+			this.btnScript = new System.Windows.Forms.Button();
 			this.cmsUrls.SuspendLayout();
 			this.grbSearch.SuspendLayout();
 			this.sts.SuspendLayout();
@@ -69,9 +77,10 @@
 			this.lsvDate.FullRowSelect = true;
 			this.lsvDate.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.lsvDate.HideSelection = false;
-			this.lsvDate.Location = new System.Drawing.Point(12, 69);
+			this.lsvDate.LabelWrap = false;
+			this.lsvDate.Location = new System.Drawing.Point(12, 105);
 			this.lsvDate.Name = "lsvDate";
-			this.lsvDate.Size = new System.Drawing.Size(168, 309);
+			this.lsvDate.Size = new System.Drawing.Size(168, 273);
 			this.lsvDate.TabIndex = 1;
 			this.lsvDate.UseCompatibleStateImageBehavior = false;
 			this.lsvDate.View = System.Windows.Forms.View.Details;
@@ -92,10 +101,12 @@
 			this.lsvTweet.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lsvTweet_Date,
             this.lsvTweet_user,
-            this.lsvTweet_Text});
+            this.lsvTweet_Text,
+            this.lsvTweet_source});
 			this.lsvTweet.ContextMenuStrip = this.cmsUrls;
 			this.lsvTweet.FullRowSelect = true;
 			this.lsvTweet.HideSelection = false;
+			this.lsvTweet.LabelWrap = false;
 			this.lsvTweet.Location = new System.Drawing.Point(186, 87);
 			this.lsvTweet.Name = "lsvTweet";
 			this.lsvTweet.ShowGroups = false;
@@ -122,12 +133,19 @@
 			this.lsvTweet_Text.Text = "트윗내용";
 			this.lsvTweet_Text.Width = 300;
 			// 
+			// lsvTweet_source
+			// 
+			this.lsvTweet_source.Text = "사용한 앱";
+			this.lsvTweet_source.Width = 80;
+			// 
 			// cmsUrls
 			// 
+			this.cmsUrls.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.cmsUrls.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmWeb,
             this.tssUrls});
 			this.cmsUrls.Name = "cmsUrls";
+			this.cmsUrls.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
 			this.cmsUrls.Size = new System.Drawing.Size(139, 32);
 			this.cmsUrls.Opening += new System.ComponentModel.CancelEventHandler(this.cmsUrls_Opening);
 			// 
@@ -219,11 +237,6 @@
 			this.bgwLoad.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLoad_DoWork);
 			this.bgwLoad.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLoad_RunWorkerCompleted);
 			// 
-			// bgwLoadAll
-			// 
-			this.bgwLoadAll.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwLoadAll_DoWork);
-			this.bgwLoadAll.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwLoadAll_RunWorkerCompleted);
-			// 
 			// bgwSearch
 			// 
 			this.bgwSearch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwSearch_DoWork);
@@ -231,23 +244,87 @@
 			// 
 			// sts
 			// 
+			this.sts.Font = new System.Drawing.Font("맑은 고딕", 9F);
 			this.sts.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsdFilter,
             this.prg,
             this.lbl});
-			this.sts.Location = new System.Drawing.Point(0, 381);
+			this.sts.Location = new System.Drawing.Point(0, 385);
 			this.sts.Name = "sts";
-			this.sts.Size = new System.Drawing.Size(626, 22);
+			this.sts.Size = new System.Drawing.Size(634, 22);
 			this.sts.TabIndex = 5;
 			this.sts.Text = "statusStrip1";
 			// 
+			// tsdFilter
+			// 
+			this.tsdFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.tsdFilter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chkFilterMy,
+            this.chkFilterMention,
+            this.chkFilterRetweet,
+            this.chkFilterLink,
+            this.chkFilterImage});
+			this.tsdFilter.Image = ((System.Drawing.Image)(resources.GetObject("tsdFilter.Image")));
+			this.tsdFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.tsdFilter.Margin = new System.Windows.Forms.Padding(0, 2, 10, 0);
+			this.tsdFilter.Name = "tsdFilter";
+			this.tsdFilter.Size = new System.Drawing.Size(56, 20);
+			this.tsdFilter.Text = "필터링";
+			// 
+			// chkFilterMy
+			// 
+			this.chkFilterMy.Checked = true;
+			this.chkFilterMy.CheckOnClick = true;
+			this.chkFilterMy.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkFilterMy.Name = "chkFilterMy";
+			this.chkFilterMy.Size = new System.Drawing.Size(190, 22);
+			this.chkFilterMy.Text = "내 트윗 표시";
+			// 
+			// chkFilterMention
+			// 
+			this.chkFilterMention.Checked = true;
+			this.chkFilterMention.CheckOnClick = true;
+			this.chkFilterMention.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkFilterMention.Name = "chkFilterMention";
+			this.chkFilterMention.Size = new System.Drawing.Size(190, 22);
+			this.chkFilterMention.Text = "멘션 표시";
+			// 
+			// chkFilterRetweet
+			// 
+			this.chkFilterRetweet.Checked = true;
+			this.chkFilterRetweet.CheckOnClick = true;
+			this.chkFilterRetweet.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkFilterRetweet.Name = "chkFilterRetweet";
+			this.chkFilterRetweet.Size = new System.Drawing.Size(190, 22);
+			this.chkFilterRetweet.Text = "리트윗 표시";
+			// 
+			// chkFilterLink
+			// 
+			this.chkFilterLink.Checked = true;
+			this.chkFilterLink.CheckOnClick = true;
+			this.chkFilterLink.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkFilterLink.Name = "chkFilterLink";
+			this.chkFilterLink.Size = new System.Drawing.Size(190, 22);
+			this.chkFilterLink.Text = "링크가 첨부된 트윗";
+			// 
+			// chkFilterImage
+			// 
+			this.chkFilterImage.Checked = true;
+			this.chkFilterImage.CheckOnClick = true;
+			this.chkFilterImage.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.chkFilterImage.Name = "chkFilterImage";
+			this.chkFilterImage.Size = new System.Drawing.Size(190, 22);
+			this.chkFilterImage.Text = "이미지가 첨부된 트윗";
+			// 
 			// prg
 			// 
-			this.prg.Maximum = 150;
 			this.prg.Name = "prg";
-			this.prg.Size = new System.Drawing.Size(150, 16);
+			this.prg.Size = new System.Drawing.Size(100, 16);
+			this.prg.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
 			// 
 			// lbl
 			// 
+			this.lbl.Margin = new System.Windows.Forms.Padding(5, 3, 0, 2);
 			this.lbl.Name = "lbl";
 			this.lbl.Size = new System.Drawing.Size(105, 17);
 			this.lbl.Text = "불러오는중 : 0 / 0";
@@ -256,11 +333,36 @@
 			// 
 			this.bgwRefresh.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwRefresh_DoWork);
 			// 
+			// btnAnalytics
+			// 
+			this.btnAnalytics.Location = new System.Drawing.Point(12, 69);
+			this.btnAnalytics.Name = "btnAnalytics";
+			this.btnAnalytics.Size = new System.Drawing.Size(81, 30);
+			this.btnAnalytics.TabIndex = 6;
+			this.btnAnalytics.Text = "트윗 분석";
+			this.btnAnalytics.UseVisualStyleBackColor = true;
+			this.btnAnalytics.Click += new System.EventHandler(this.btnAnalytics_Click);
+			// 
+			// bgwAnalytics
+			// 
+			this.bgwAnalytics.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwAnalytics_DoWork);
+			this.bgwAnalytics.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwAnalytics_RunWorkerCompleted);
+			// 
+			// btnScript
+			// 
+			this.btnScript.Location = new System.Drawing.Point(99, 69);
+			this.btnScript.Name = "btnScript";
+			this.btnScript.Size = new System.Drawing.Size(81, 30);
+			this.btnScript.TabIndex = 7;
+			this.btnScript.Text = "스크립트";
+			this.btnScript.UseVisualStyleBackColor = true;
+			// 
 			// frmMain
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.ClientSize = new System.Drawing.Size(626, 403);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.ClientSize = new System.Drawing.Size(634, 407);
+			this.Controls.Add(this.btnScript);
+			this.Controls.Add(this.btnAnalytics);
 			this.Controls.Add(this.sts);
 			this.Controls.Add(this.lblPayload);
 			this.Controls.Add(this.grbSearch);
@@ -268,6 +370,7 @@
 			this.Controls.Add(this.lsvTweet);
 			this.Controls.Add(this.lsvDate);
 			this.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.MinimumSize = new System.Drawing.Size(642, 441);
 			this.Name = "frmMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "TweetArchiveViewer";
@@ -301,16 +404,24 @@
 		private System.ComponentModel.BackgroundWorker bgwOpen;
 		private System.Windows.Forms.Label lblPayload;
 		private System.ComponentModel.BackgroundWorker bgwLoad;
-		private System.ComponentModel.BackgroundWorker bgwLoadAll;
 		private System.ComponentModel.BackgroundWorker bgwSearch;
 		private System.Windows.Forms.StatusStrip sts;
 		private System.Windows.Forms.ToolStripStatusLabel lbl;
 		private System.Windows.Forms.ToolStripProgressBar prg;
 		private System.ComponentModel.BackgroundWorker bgwRefresh;
-		private System.ComponentModel.BackgroundWorker bgwMemory;
 		private System.Windows.Forms.ContextMenuStrip cmsUrls;
 		private System.Windows.Forms.ToolStripMenuItem tsmWeb;
 		private System.Windows.Forms.ToolStripSeparator tssUrls;
+		private System.Windows.Forms.Button btnAnalytics;
+		private System.ComponentModel.BackgroundWorker bgwAnalytics;
+		private System.Windows.Forms.ColumnHeader lsvTweet_source;
+		private System.Windows.Forms.ToolStripDropDownButton tsdFilter;
+		private System.Windows.Forms.ToolStripMenuItem chkFilterMy;
+		private System.Windows.Forms.ToolStripMenuItem chkFilterRetweet;
+		private System.Windows.Forms.ToolStripMenuItem chkFilterImage;
+		private System.Windows.Forms.ToolStripMenuItem chkFilterMention;
+		private System.Windows.Forms.ToolStripMenuItem chkFilterLink;
+		private System.Windows.Forms.Button btnScript;
 	}
 }
 

@@ -49,51 +49,56 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonExt.cs" />
-    <Compile Include="frmHelp.cs">
+    <Compile Include="ArchiveReader\ArchiveReader.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Windows\frmAnalytics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmHelp.Designer.cs">
+    <Compile Include="Windows\frmAnalytics.Designer.cs">
+      <DependentUpon>frmAnalytics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Json\JsonExt.cs" />
+    <Compile Include="Windows\frmHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\frmHelp.Designer.cs">
       <DependentUpon>frmHelp.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="Windows\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="Windows\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOpen.cs">
+    <Compile Include="Windows\frmOpen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOpen.Designer.cs">
+    <Compile Include="Windows\frmOpen.Designer.cs">
       <DependentUpon>frmOpen.cs</DependentUpon>
     </Compile>
-    <Compile Include="JsonToolKit 4.1.736.cs" />
+    <Compile Include="Json\JsonToolKit 4.1.736.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="LICENSE" />
-    <Compile Include="TweetSearch.cs" />
-    <Compile Include="TweetIndex.cs" />
-    <Compile Include="TweetInfo.cs" />
-    <EmbeddedResource Include="frmHelp.resx">
+    <Compile Include="ArchiveReader\TweetSearch.cs" />
+    <Compile Include="ArchiveReader\MonthlyInfo.cs" />
+    <Compile Include="ArchiveReader\TweetInfo.cs" />
+    <Compile Include="WinTaskbar.cs" />
+    <EmbeddedResource Include="Windows\frmAnalytics.resx">
+      <DependentUpon>frmAnalytics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\frmHelp.resx">
       <DependentUpon>frmHelp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="Windows\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOpen.resx">
+    <EmbeddedResource Include="Windows\frmOpen.resx">
       <DependentUpon>frmOpen.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -107,6 +112,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
